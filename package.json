@@ -1,5 +1,5 @@
 {
-  "name": "hapi-template",
+  "name": "hapi-boilerplate",
   "version": "0.0.1",
   "description": "A boilerplate hapijs project",
   "main": "index.js",
