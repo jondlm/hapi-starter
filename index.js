@@ -24,7 +24,7 @@ var packs = [
       reporters: [ // ability to send logs to multiple recipients
         {
           reporter: require('good-console'),
-          args: [{ log: '*', response: '*', error: '*', request: '*' }]
+          events: { log: '*', response: '*', error: '*', request: '*' }
         }
       ]
     }
