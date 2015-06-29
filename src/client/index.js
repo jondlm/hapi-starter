@@ -1,17 +1,17 @@
 var React = require('react');
 
-var TodoList = React.createClass({displayName: "TodoList",
+var TodoList = React.createClass({displayName: 'TodoList',
   render: function() {
     var createItem = function(itemText) {
-      return React.createElement("li", null,
-        React.createElement("input", { type: "checkbox" }, itemText)
+      return React.createElement('li', null,
+        React.createElement('input', { type: 'checkbox' }, itemText)
       );
     };
-    return React.createElement("ul", null, this.props.items.map(createItem));
+    return React.createElement('ul', null, this.props.items.map(createItem));
   }
 });
 
-var TodoApp = React.createClass({displayName: "TodoApp",
+var TodoApp = React.createClass({displayName: 'TodoApp',
   getInitialState: function() {
     return {items: [], text: ''};
   },
@@ -26,12 +26,12 @@ var TodoApp = React.createClass({displayName: "TodoApp",
   },
   render: function() {
     return (
-      React.createElement("div", null,
-        React.createElement("h3", null, "TODO"),
+      React.createElement('div', null,
+        React.createElement('h3', null, 'TODO'),
         React.createElement(TodoList, {items: this.state.items}),
-        React.createElement("form", {onSubmit: this.handleSubmit},
-          React.createElement("input", {onChange: this.onChange, value: this.state.text}),
-          React.createElement("button", null, 'Add #' + (this.state.items.length + 1))
+        React.createElement('form', {onSubmit: this.handleSubmit},
+          React.createElement('input', {onChange: this.onChange, value: this.state.text}),
+          React.createElement('button', null, 'Add #' + (this.state.items.length + 1))
         )
       )
     );

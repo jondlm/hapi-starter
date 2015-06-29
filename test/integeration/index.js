@@ -1,17 +1,14 @@
-var r    = require('project-base');
-var _    = require('lodash');
+/*eslint quotes:0 */
+var r    = require('__base');
 var Code = require('code'); // assertion library
 var Lab  = require('lab');
 var lab  = exports.lab = Lab.script();
 
 var describe   = lab.describe;
 var it         = lab.it;
-var before     = lab.before;
-var beforeEach = lab.beforeEach;
-var after      = lab.after;
 var expect     = Code.expect;
 
-var server = require(r+'index.js');
+var server = require(r + 'index.js');
 
 // Override console.log so console messages dont leak out
 console.log = function(){};

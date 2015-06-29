@@ -2,12 +2,11 @@
 //
 // Dependencies
 // -------------------------------------
-var r        = require('project-base'); // easier local `require`
+var r        = require('__base'); // easier local `require`
 var Hapi     = require('hapi');
 var Lout     = require('lout');
-var routes   = require(r+'config/routes.js');
-var settings = require(r+'config/settings.js');
-var env      = process.env.NODE_ENV;
+var routes   = require(r + 'src/server/config/routes');
+var settings = require(r + 'src/server/config/settings');
 
 var server = new Hapi.Server();
 server.connection({ port: settings.port });
@@ -33,6 +32,7 @@ var packs = [
 ];
 
 server.register(packs, function(err) {
+  if (err) { console.log(err); }
 
   //
   // Register routes

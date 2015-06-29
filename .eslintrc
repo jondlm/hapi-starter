@@ -1,0 +1,16 @@
+{
+  "ecmaFeatures": {
+    "modules": true,
+    "jsx": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "quotes": [1, "single"],
+    "comma-dangle": true,
+    "no-multi-spaces": false
+  }
+}
