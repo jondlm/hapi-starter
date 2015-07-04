@@ -1,3 +1,7 @@
+//
+// Index
+// -----------------------------------------------------------------------------
+// This is the entry point file for the server
 
 //
 // Dependencies
@@ -7,9 +11,12 @@ var Hapi     = require('hapi');
 var Lout     = require('lout');
 var routes   = require(r + 'src/server/config/routes');
 var settings = require(r + 'src/server/config/settings');
+var log      = require(r + 'src/server/util/log');
 
 var server = new Hapi.Server();
-server.connection({ port: settings.port });
+server.connection({
+  port: settings.get('port')
+});
 
 //
 // Register packs
@@ -23,7 +30,8 @@ var packs = [
     options: {
       reporters: [ // ability to send logs to multiple recipients
         {
-          reporter: require('good-console'),
+          reporter: require(r + 'src/server/util/good-bunyan'),
+          config: { bunyanInstance: log },
           events: { log: '*', response: '*', error: '*', request: '*' }
         }
       ]
@@ -32,7 +40,7 @@ var packs = [
 ];
 
 server.register(packs, function(err) {
-  if (err) { console.log(err); }
+  if (err) { log.fatal(err); }
 
   //
   // Register routes
@@ -43,7 +51,7 @@ server.register(packs, function(err) {
   // Start server
   // -------------------------------------
   server.start(function() {
-    server.log('init', 'Server started at ' + server.info.uri);
+    log.info('Server started at ' + server.info.uri);
   });
 });
 

@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "boom": "^2.8.0",
+    "bunyan": "^1.4.0",
     "good": "^6.2.0",
     "good-console": "^5.0.2",
     "hapi": "^8.6.1",
