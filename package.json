@@ -4,6 +4,7 @@
   "description": "An opinionated Hapi starter project",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js | bunyan",
     "test": "lab",
     "build": "browserify src/client/index.js -o public/js/bundle.js",
     "build-dev": "watchify src/client/index.js -v -d -o public/js/bundle.js",
@@ -11,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://example.com"
+    "url": "https://github.com/jondlm/hapi-starter.git"
   },
-  "author": "Jon de la Motte <jdelamotte@appnexus.com>",
+  "author": "Jon de la Motte <jondlm@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "boom": "^2.8.0",
     "bunyan": "^1.4.0",
     "good": "^6.2.0",
-    "good-console": "^5.0.2",
+    "good-squeeze": "^2.1.0",
     "hapi": "^8.6.1",
     "joi": "^6.5.0",
     "lout": "^6.2.2",

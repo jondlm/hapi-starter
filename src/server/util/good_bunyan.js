@@ -9,6 +9,16 @@ var EVENTS = {
   LOG: 'log'
 };
 
+/**
+ * GoodBunyan
+ *
+ * See https://github.com/hapijs/good#reporter-interface for more details
+ *
+ * @param {object} events
+ * @param {object} config
+ * @param {Bunyan} config.bunyanInstance - an instance of a bunyan logger
+ * @return {undefined}
+ */
 function GoodBunyan (events, config) {
     if (!(this instanceof GoodBunyan)) {
         return new GoodBunyan(events, config);
@@ -36,24 +46,29 @@ GoodBunyan.prototype.init = function (readstream, emitter, callback) {
       }
 
       if (data.event === EVENTS.RESPONSE) {
-        opts.req_id = stripId(data.id); // req_id is a defacto identifier for a request id
+        // req_id is a defacto identifier for bunyan
+        // https://github.com/trentm/node-bunyan#log-record-fields
+        opts.req_id = stripId(data.id); // eslint-disable-line
         opts.method = data.method;
         opts.path = data.path;
         opts.msec = data.responseTime;
 
-        return that._bunyan.info(opts, 'response (%sms)', data.responseTime);
+        return that._bunyan.info(opts, 'response', data.responseTime);
       }
 
       // TODO: more specific logging for each type of event
       if (
         data.event === EVENTS.REQUEST ||
         data.event === EVENTS.OPS ||
-        data.event === EVENTS.ERROR ||
         data.event === EVENTS.LOG
       ) {
         opts.data = data;
 
         return that._bunyan.info(data, data.event);
+      }
+
+      if (data.event === EVENTS.ERROR) {
+        return that._bunyan.error({ data: data }, data.event);
       }
 
     });

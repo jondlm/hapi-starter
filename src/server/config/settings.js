@@ -25,6 +25,11 @@ var defaults = {
 var allOverrides = {
   production: {
     port: 80
+  },
+  test: {
+    bunyan: {
+      level: 'fatal' // hide all but fatal messages when testing
+    }
   }
 };
 
