@@ -30,9 +30,12 @@ var packs = [
     options: {
       reporters: [ // ability to send logs to multiple recipients
         {
-          reporter: require(r + 'src/server/util/good_bunyan'),
-          config: { bunyanInstance: log },
-          events: { log: '*', response: '*', error: '*', request: '*' }
+          reporter: require('good-bunyan'),
+          events: { log: '*', response: '*', error: '*', request: '*' },
+          config: {
+            logger: log,
+            levels: { response: 'info' }
+          }
         }
       ]
     }

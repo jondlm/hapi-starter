@@ -36,6 +36,11 @@ module.exports = [
     method: 'GET',
     path: '/{path*}',
     handler: { directory: { path: r + 'public' } }
+  },
+  {
+    method: 'GET',
+    path: '/err',
+    handler: applicationController.err
   }
 ];
 

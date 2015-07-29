@@ -14,6 +14,10 @@ module.exports.index = function (request, reply) {
   return reply.file(r + 'src/server/views/index.html');
 };
 
+module.exports.err = function (request, reply) {
+  return reply.test.test.nope();
+};
+
 module.exports.sampleData = function (request, reply) {
   return reply([
     {name: 'frank', age: 42},
